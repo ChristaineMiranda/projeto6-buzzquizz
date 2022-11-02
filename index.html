@@ -1,12 +1,83 @@
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>BuzzQuizz</title>
     </head>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="estilo.css">
+    <!-- fontes: Roboto (400 e 700 / itálico) / Roboto Condensed (400 e 700) / Poppins (400 e 700)-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <body>
-        
+        <!-- deixei a barra vermelha do buzzquizz para aparecer em todas as outras telas-->
+         <header class="barraCima"><h1 class="buzzquizz">BuzzQuizz</h1></header>
+
+
+         <div class="entrada conteudoGeral">
+         <div class="caixaCriar">
+            <div class="infoCriarQuizz">
+                <span>Você não criou nenhum quizz ainda :(</span>
+                <button onclick="criarQuizz()" class="criarBotao">Criar Quizz</button>
+            </div>
+         </div>
+         <div class="listaQuizzes">
+            <span class="manterDireita">Todos os Quizzes</span>
+            
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </div>
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
+            </div>
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
+            </div>
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
+            </div>
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
+            </div>
+            
+            <div class="quizz">
+                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
+            </div>
+
+
+         </div> <!--fim da listaQuizzes-->
+         </div> <!-- fim de conteudoGeral-->
+
+         <!-- acredito que podemos usar as configurações do conteudoGeral para outras telas-->
+         <div class="criarQuizzConteudo conteudoGeral esconder">
+            <div class="infoBasica">
+                <div class="orientaçãoCriarQuizz">Comece pelo começo</div>
+                <div class="caixaBranca">
+                    <input type="text" placeholder="Título do seu quizz" />
+                    <input type="text" placeholder="URL da imagem do seu quizz" />
+                    <input type="text" placeholder="Quantidade de perguntas do quizz" />
+                    <input type="text" placeholder="Quantidade de níveis do quizz" />
+                </div>
+            </div>
+
+
+         </div>
+         
+
+
+         <script src="script.js"></script>
     </body>
     </html>
