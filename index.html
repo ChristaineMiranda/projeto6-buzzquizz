@@ -16,6 +16,7 @@
          <header class="barraCima"><h1 class="buzzquizz">BuzzQuizz</h1></header>
 
 
+         <!-- TELA 1: LISTA DE QUIZZES -->
          <div class="entrada conteudoGeral">
          <div class="caixaCriar">
             <div class="infoCriarQuizz">
@@ -23,45 +24,175 @@
                 <button onclick="criarQuizz()" class="criarBotao">Criar Quizz</button>
             </div>
          </div>
-         <div class="listaQuizzes">
+         <ul class="listaQuizzes">
             <span class="manterDireita">Todos os Quizzes</span>
             
-            
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
                 <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-            </div>
+            </li>
+
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </li>
+
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </li>
+
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </li>
+
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </li>
+
+            <li class="quizz" onclick="abrirQuizz(this)">
+                <img class="imgQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+                <div class="nomeQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+            </li>
             
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
-                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
-            </div>
-            
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
-                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
-            </div>
-            
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
-                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
-            </div>
-            
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
-                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
-            </div>
-            
-            <div class="quizz">
-                <img class="imgQuizz" src="https://br.web.img3.acsta.net/newsv7/21/10/15/22/09/2037612.jpg" />
-                <div class="nomeQuizz">O nome de um quizz bem grande grande grande grande grande</div>
-            </div>
 
 
-         </div> <!--fim da listaQuizzes-->
+        </ul> <!--fim da listaQuizzes-->
          </div> <!-- fim de conteudoGeral-->
+         
+         
+         
+         <!-- TELA 2: PAGINA DE UM QUIZZ -->
+         <div class="paginaQuizz conteudoQuizz esconder">
+            <img class="imgPaginaQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
+            <div class="escurecerImg">escurecerImg</div>
+         <div class="nomePaginaQuizz"><h1>Acerte os personagens corretos dos Simpsons e prove seu amor!</h1></div>
+         
+        <div class="caixaPerguntaQuizz">
 
-         <!-- acredito que podemos usar as configurações do conteudoGeral para outras telas-->
+            <div class="caixaPergunta caixaCor1"><span class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span></div>
+    
+            <div class="opcoes">
+            <div class="opcoesEsquerda">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">1Opcao1</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">1Opcao2</div>
+                </div>
+            </div>
+            <div class="opcoesDireita">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">1Opcao3</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">1Opcao4</div>
+                </div>
+            </div>
+    </div> <!-- opcoes -->
+        </div> <!-- caixaPerguntaQuizz -->
+
+        <div class="caixaPerguntaQuizz">
+
+            <div class="caixaPergunta caixaCor2"><span class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span></div>
+    
+            <div class="opcoes">
+            <div class="opcoesEsquerda">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">2Opcao1</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">2Opcao2</div>
+                </div>
+            </div>
+            <div class="opcoesDireita">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">2Opcao3</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">2Opcao4</div>
+                </div>
+            </div>
+    </div> <!-- opcoes -->
+        </div> <!-- caixaPerguntaQuizz -->
+
+        <div class="caixaPerguntaQuizz">
+
+            <div class="caixaPergunta caixaCor3"><span class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span></div>
+    
+            <div class="opcoes">
+            <div class="opcoesEsquerda">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">3Opcao1</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">3Opcao2</div>
+                </div>
+            </div>
+            <div class="opcoesDireita">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">3Opcao3</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">3Opcao4</div>
+                </div>
+            </div>
+    </div> <!-- opcoes -->
+        </div> <!-- caixaPerguntaQuizz -->
+
+        <div class="caixaPerguntaQuizz">
+
+            <div class="caixaPergunta caixaCor4"><span class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span></div>
+    
+            <div class="opcoes">
+            <div class="opcoesEsquerda">
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">4Opcao1</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">4Opcao2</div>
+                </div>
+            </div>
+            <div class="opcoesDireita" onclick="selecionarOpcao(this)">
+                <div class="opcao">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">4Opcao3</div>
+                </div>
+                <div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=iQEwihUn" />
+                    <div class="nomeOpcao">4Opcao4</div>
+                </div>
+            </div>
+    </div> <!-- opcoes -->
+        </div> <!-- caixaPerguntaQuizz -->
+
+        </div> <!-- paginaQuizz conteudoQuizz-->
+        
+
+
+
+
+
+
+
+         <!-- TELA 3: CRIAÇÃO DE QUIZZES -->
+         <!-- acredito que podemos usar as configurações do conteudoGeral para tela de entrada e de criacao do quizz-->
          <div class="criarQuizzConteudo conteudoGeral esconder">
             <div class="infoBasica">
                 <div class="orientaçãoCriarQuizz">Comece pelo começo</div>
@@ -78,6 +209,7 @@
          
 
 
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
          <script src="script.js"></script>
     </body>
     </html>
