@@ -66,9 +66,9 @@ body {
     justify-content: space-around;
     position: relative;
 }
-.manterDireita {
+.manterEsquerda {
     position:absolute;
-    left: 0;
+    left: 5px;
     top: -20px;
 }
 .imgQuizz{
@@ -98,16 +98,18 @@ body {
     display: none;
 }
 
-.orientaçãoCriarQuizz{
+.orientacaoCriarQuizz{
     font-weight: 700;
     font-size: 20px;
     text-align: center;
 }
 .caixaBranca {
-    background-color: #e68a00;
+    background-color: #FFFFFF;
     max-width: 600px;
     margin: 80px auto;
     text-align: center;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
 }
 input{
     margin: 10px auto;
@@ -118,6 +120,7 @@ input{
     outline: 0;
     font-size: 19px;
     padding: 10px;
+    margin-top: 10px;
 }
 input::placeholder {
     font-style: italic;
@@ -126,6 +129,78 @@ input::placeholder {
     padding: 4px;
     border-radius: 5px;
 }
+.botaoProsseguir {
+    width: 365px;
+    height: 54px;
+    border-radius: 15px;
+    background-color:#EC362D;
+    margin: 30px auto;
+    text-align: center;
+    padding: 15px;
+}
+.textoBotaoCriacao {
+    font-size: 21px;
+    color:#FFF5F4;
+}
+.caixaBrancaReduzida {
+    margin-top: 35px;
+    max-width: 601px;
+    height: 74px;
+    background-color: #FFFFFF;
+    position: relative;
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.05);
+}
+.manterEsquerda2 {
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    left: 20px
+}
+.iconeCriacao {
+    width: 26px;
+    height: 23px;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+.orientacaoEsquerda {
+    margin-left: 12px;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: start;
+    margin-top: 10px;
+}
+.botaoRetornar {
+    margin: 30px auto;
+    width: 100%;
+    text-align: center;
+}
+.retornar {
+    color: #818181;
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .conteudoQuizz {
     width: 100%;
     margin-top: 69px;
