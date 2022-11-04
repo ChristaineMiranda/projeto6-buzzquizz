@@ -39,18 +39,19 @@
          
          
          <!-- TELA 2: PAGINA DE UM QUIZZ -->
-         <div class="paginaQuizz conteudoQuizz esconder">
+         <div class="paginaQuizz esconder">
+            <div class="conteudoQuizz">
             <img class="imgPaginaQuizz" src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/star/48478743BB7ADB3F0C4B5AF58E185BB295E9B849FAD0EB124676EB47F3889AB9/scale?width=1200&aspectRatio=1.78&format=jpeg" />
             <div class="escurecerImg">escurecerImg</div>
          <div class="nomePaginaQuizz"><h1>Acerte os personagens corretos dos Simpsons e prove seu amor!</h1></div>
-         
-
+        </div>
+        
         <ul class="caixasPerguntasQuiz">
         <div class="caixaPerguntaQuizz">
 
             <div class="caixaPergunta"><span class="pergunta">Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span></div>
     
-            <div class="scroll">oi</div>
+
             <div class="opcoes">
             <div class="opcoesEsquerda">
                 <div class="opcao primeira" onclick="selecionarOpcao1(this)">
@@ -299,9 +300,10 @@
             <div class="sucessoQuiz esconder">
                 <div class="orientacaoCriarQuizz">Seu quizz está pronto!</div>
                 <div class="addImgResultado">
-            
-                    <div class="tituloSucessoQuizResultado">O quão Potterhead é você?</div>
-                </div>
+                    <div class="resultadoCompleto">
+                        <div class="caixaTituloSucessoQuizResultado"><h1 class="tituloSucessoQuizResultado"></h1></div>
+                    </div>
+            </div>
                 <div class="botaoProsseguir" onclick="acessarQuiz(this)"><span class="textoBotaoCriacao">Acessar Quizz</span></div>
                 <div class="botaoRetornar" onclick="retornarTelaPrincipal(this)"><span class="retornar">Voltar pra home</span></div>
             </div> <!-- TELA 3.4-->

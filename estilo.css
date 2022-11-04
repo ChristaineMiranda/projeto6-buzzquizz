@@ -182,23 +182,35 @@ input::placeholder {
     color: #818181;
     font-size: 18px;
 }
+.addImgResultado{
+    width: 100%;
+    margin-top: 30px;
+}
+.resultadoCompleto {
+    width: 500px;
+    height: 266px;
+    margin: 0 auto;
+    position: relative;
+}
 .imgSucessoQuizResultado {
     width: 500px;
     height: 266px;
-    margin: 30px auto;
     border-radius: 5px;
-    position: relative;
-    background-color: #434CA0;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.8));
 }
-.tituloSucessoQuizResultado {
+.caixaTituloSucessoQuizResultado {
+    height: 90px;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));
+}
+.tituloSucessoQuizResultado{
     font-size: 23px;
     color: #FFFFFF;
-    position: absolute;
-    bottom: calc(100% - 230px); 
-    left: 15px;
 }
-
 
 
 
@@ -262,12 +274,6 @@ input::placeholder {
     padding: 55px;
     background-color: #434CA0;
 }
-.scroll {
-    position: absolute;
-    bottom: 0; 
-    right: 0;
-}
-
 
 
 
@@ -425,10 +431,17 @@ input::placeholder {
         min-height: 500px;
     }
     .imgSucessoQuizResultado {
-        min-width: 340px;
-        min-height: 181px;
+        max-width: 340px;
+        max-height: 181px;
+        margin: 0 auto;
     }
     .tituloSucessoQuizResultado {
         font-size: 19px;
+    }
+    .resultadoCompleto {
+        max-width: 340px;
+        max-height: 181px;
+        margin: 0 auto;
+        text-align: flex-start;
     }
 }
