@@ -21,18 +21,18 @@ body {
     color: #FFFFFF;
     font-weight: 700;
     font-size: 37px;
-    margin-top: 13px;
+    margin: 13px auto;
 }
 .conteudoGeral {
     width: 100%;
-    margin-top: 100px;
+    justify-content: center;
+    margin: 100px auto;
 }
 .caixaCriar {
     justify-content: center;
     max-width: 1051px;
     height: 181px;
-    margin-top: 100px;
-    margin: 0 auto;
+    margin: 100px auto;
     border-radius: 5px;
     border: 1px dashed #D5D5D5;
 }
@@ -84,12 +84,14 @@ body {
 }
 .nomeQuizz {
     width: 100%;
-    height: 55px;
+    height: 50px;
     color: #FFFFFF;
     font-size: 19px;
     font-weight: 400;
+    overflow: hidden;
     position: absolute;
     bottom: 0;
+    left: 0;
     padding: 8px;
     border-radius: 5px;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.025), rgba(0, 0, 0, 1));
@@ -134,7 +136,7 @@ input::placeholder {
     height: 54px;
     border-radius: 15px;
     background-color:#EC362D;
-    margin: 30px auto;
+    margin: 50px auto;
     text-align: center;
     padding: 15px;
 }
@@ -143,7 +145,7 @@ input::placeholder {
     color:#FFF5F4;
 }
 .caixaBrancaReduzida {
-    margin-top: 35px;
+    margin: 50px auto;
     max-width: 601px;
     height: 74px;
     background-color: #FFFFFF;
@@ -180,9 +182,22 @@ input::placeholder {
     color: #818181;
     font-size: 18px;
 }
-
-
-
+.imgSucessoQuizResultado {
+    width: 500px;
+    height: 266px;
+    margin: 30px auto;
+    border-radius: 5px;
+    position: relative;
+    background-color: #434CA0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.8));
+}
+.tituloSucessoQuizResultado {
+    font-size: 23px;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: calc(100% - 230px); 
+    left: 15px;
+}
 
 
 
@@ -237,7 +252,7 @@ input::placeholder {
     margin: 42px auto;
     justify-content: space-between;
     position: relative;
-    box-shadow: 2px 2px 10px 4px rgba(0,0,0, 0.1);
+    box-shadow: 0px 0px 20px 4px rgba(0,0,0, 0.1);
     padding: 25px;
 }
 .caixaPergunta {
@@ -245,19 +260,19 @@ input::placeholder {
     height: 138px;
     text-align: center;
     padding: 55px;
-}
-.caixaCor1 {
     background-color: #434CA0;
 }
-.caixaCor2 {
-    background-color: #A0458D;
+.scroll {
+    position: absolute;
+    bottom: 0; 
+    right: 0;
 }
-.caixaCor3 {
-    background-color: #549D26;
-}
-.caixaCor4 {
-    background-color: #A65354;
-}
+
+
+
+
+
+
 
 
 
@@ -316,6 +331,57 @@ input::placeholder {
     color: #EA4848; 
 }
 
+.caixaSucessoQuizz {
+    width: 759px;
+    height: 435px;
+    background-color: #FFFFFF;
+    margin: 42px auto;
+    box-shadow: 2px 2px 20px 4px rgba(0,0,0, 0.1);
+    padding: 25px;
+}
+.caixaVermelhaResultado {
+    width: 100%;
+    height: 99px;
+    background-color: #EC362D;
+    margin: 0 auto;
+    z-index: 3;
+    text-align: center;
+    font-weight: 700;
+    font-size: 23px;
+    color: #FFFFFF;
+    padding-top: 38px;
+}
+.conteudoResultado {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 15px auto;
+}
+.imagemResultado {
+    width: 364px;
+    height: 273px;
+    background-color: #549D26;
+}
+.textoResultado{
+    width: 300px;
+    height: 273px;
+    background-color: #549D26;
+    color: #484848; 
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -352,5 +418,17 @@ input::placeholder {
     }
     .opcoes {
         height: 79%;
+    }
+    .conteudoResultado {
+        flex-direction: column;
+        min-width: 375px;
+        min-height: 500px;
+    }
+    .imgSucessoQuizResultado {
+        min-width: 340px;
+        min-height: 181px;
+    }
+    .tituloSucessoQuizResultado {
+        font-size: 19px;
     }
 }
