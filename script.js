@@ -42,6 +42,7 @@ function telaNiveisQuiz (item) {
     aparecer.classList.remove ('esconder');
 }
 function telaSucessoQuiz (item) {
+    postQuizCriado();
     //leva para a tela 3.4; 
     const esconder = document.querySelector ('.niveisQuiz');
     esconder.classList.add ('esconder');
@@ -118,7 +119,7 @@ function addQtdPerguntas () {
 
     <input class="textoRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="Resposta incorreta 3" />
     <input class="imagemRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="URL da imagem 3" /></li>`;
-    arrayCaixasPerguntas.push (`${addCaixas.innerHTML}`);
+    arrayCaixasPerguntas.push ({posição}`${addCaixas.innerHTML}`);
 }
 }
 
@@ -150,6 +151,7 @@ function addQtdNiveis () {
 
 function postQuizCriado () {
 
+    
     console.log (arrayCaixasPerguntas);
     qtddPerguntasQuiz = Number(document.querySelector ('.qtddPerguntasQuiz').value);
     qtddNiveisQuiz = Number(document.querySelector ('.qtddNiveisQuiz').value);
@@ -161,63 +163,32 @@ function postQuizCriado () {
     let tituloDoQuiz = document.querySelector ('.tituloDoQuiz').value;
     let imagemDoQuiz = document.querySelector ('.imagemDoQuiz').value;
 
-
-    let textoPergunta1;
-    let corPergunta1;
-    let textoRespostaCorreta;
-    let imagemRespostaCorreta;
-    let textoRespostaIncorreta1;
-    let imagemRespostaIncorreta1;
-    let textoRespostaIncorreta2;
-    let imagemRespostaIncorreta2;
-    let textoRespostaIncorreta3;
-    let imagemRespostaIncorreta3;
+    let textoPergunta1 = document.querySelector ('.textoPergunta1').value;
+    let corPergunta1 = document.querySelector ('.corPergunta1').value;
 
 
-
-    arrayCaixasPerguntas.forEach (() => {
-    textoPergunta1 = document.querySelector ('.textoPergunta1').value;
-    corPergunta1 = document.querySelector ('.corPergunta1').value;
-
-
-    textoRespostaCorreta = document.querySelector ('.textoRespostaCorreta').value;
-    imagemRespostaCorreta = document.querySelector ('.imagemRespostaCorreta').value;
-    textoRespostaIncorreta1 = document.querySelector ('.textoRespostaIncorreta1').value;
-    imagemRespostaIncorreta1 = document.querySelector ('.imagemRespostaIncorreta1').value;
-    textoRespostaIncorreta2 = document.querySelector ('.textoRespostaIncorreta2').value;
-    imagemRespostaIncorreta2 = document.querySelector ('.imagemRespostaIncorreta2').value;
-    textoRespostaIncorreta3 = document.querySelector ('.textoRespostaIncorreta3').value;
-    imagemRespostaIncorreta3 = document.querySelector ('.imagemRespostaIncorreta3').value;
-})
-
-console.log (textoPergunta1);
-console.log (corPergunta1);
-console.log (textoRespostaCorreta);
-console.log (imagemRespostaCorreta);
-console.log (textoRespostaIncorreta1);
-console.log (imagemRespostaIncorreta1);
-console.log (textoRespostaIncorreta2);
-console.log (imagemRespostaIncorreta2);
-console.log (textoRespostaIncorreta3);
-console.log (imagemRespostaIncorreta3);
-
-
-
-
-    let arrayRespostasPergunta1 = [{text: textoRespostaCorreta, image: imagemRespostaCorreta, isCorrectAnswer: true },
-        {text: textoRespostaIncorreta1, image: imagemRespostaIncorreta1, isCorrectAnswer: false },
-        {text: textoRespostaIncorreta2, image: imagemRespostaIncorreta2, isCorrectAnswer: false },
-        {text: textoRespostaIncorreta3, image: imagemRespostaIncorreta3, isCorrectAnswer: false }];
+    let textoRespostaCorreta = document.querySelector ('.textoRespostaCorreta').value;
+    let imagemRespostaCorreta = document.querySelector ('.imagemRespostaCorreta').value;
+    let textoRespostaIncorreta1 = document.querySelector ('.textoRespostaIncorreta1').value;
+    let imagemRespostaIncorreta1 = document.querySelector ('.imagemRespostaIncorreta1').value;
+    let textoRespostaIncorreta2 = document.querySelector ('.textoRespostaIncorreta2').value;
+    let imagemRespostaIncorreta2 = document.querySelector ('.imagemRespostaIncorreta2').value;
+    let textoRespostaIncorreta3 = document.querySelector ('.textoRespostaIncorreta3').value;
+    let imagemRespostaIncorreta3 = document.querySelector ('.imagemRespostaIncorreta3').value;
+       
+    let quizAdicionado = {title: tituloDoQuiz, image: imagemDoQuiz, questions: [], levels: []};
     
-    
-        let questoes = [{title: textoPergunta1, color: corPergunta1, answers: arrayRespostasPergunta1}];
-
-        let quizAdicionado = {title: tituloDoQuiz, image: imagemDoQuiz, questions: questoes};
-    
-    
-
-    console.log (arrayRespostasPergunta1);
-    console.log (questoes);
+    console.log (textoPergunta1)
+    console.log (corPergunta1)
+    console.log (quizAdicionado)
+    console.log (textoRespostaCorreta)
+    console.log (imagemRespostaCorreta)
+    console.log (textoRespostaIncorreta1)
+    console.log (imagemRespostaIncorreta1)
+    console.log (textoRespostaIncorreta2)
+    console.log (imagemRespostaIncorreta2)
+    console.log (textoRespostaIncorreta3)
+    console.log (imagemRespostaIncorreta3)
     console.log (quizAdicionado)
     // respostas = [{texto, imagem, certa ou nao}]
 
@@ -261,16 +232,11 @@ function addQuizServidor () {
 
 
 
-//para cada um dos 4 quadrados do quizz, terá que ter uma função selecionarOpcao; 
 //variaveis globais;
-let resposta1; 
-let resposta2; 
-let resposta3; 
-let resposta4; 
-
-
+let resposta; 
+let contador = 0; 
 ////
-function selecionarOpcao1(respostaSelecionada) {
+function selecionarOpcao(respostaSelecionada) {
 
 
     const todasOpcoes = document.querySelectorAll ('div .primeira');
@@ -282,61 +248,18 @@ function selecionarOpcao1(respostaSelecionada) {
             respostaSelecionada.classList.remove ('ocultarResposta')
         }
     }
-    resposta1 = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML
+    resposta = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML
+    contador++;
+    console.log (contador)
     sucessoQuiz();
 }
 
-function selecionarOpcao2(respostaSelecionada) {
-    const todasOpcoes = document.querySelectorAll ('div .segunda');
-    let opcao;
-    for (let i = 0; i < todasOpcoes.length; i++) {
-        opcao = todasOpcoes[i];
-        opcao.classList.add ('ocultarResposta');
-        if (respostaSelecionada !== null) {
-            respostaSelecionada.classList.remove ('ocultarResposta')
-        }
-    }
-    resposta2 = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML;
-    sucessoQuiz();
-}
-
-function selecionarOpcao3(respostaSelecionada) {
-    const todasOpcoes = document.querySelectorAll ('div .terceira');
-    let opcao;
-    for (let i = 0; i < todasOpcoes.length; i++) {
-        opcao = todasOpcoes[i];
-        opcao.classList.add ('ocultarResposta');
-        if (respostaSelecionada !== null) {
-            respostaSelecionada.classList.remove ('ocultarResposta')
-        }
-    }
-    resposta3 = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML
-    sucessoQuiz();
-}
-
-function selecionarOpcao4(respostaSelecionada) {
-    const todasOpcoes = document.querySelectorAll ('div .quarta');
-    let opcao;
-    for (let i = 0; i < todasOpcoes.length; i++) {
-        opcao = todasOpcoes[i];
-        opcao.classList.add ('ocultarResposta');
-        if (respostaSelecionada !== null) {
-            respostaSelecionada.classList.remove ('ocultarResposta')
-        }
-    }
-    resposta4 = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML
-    sucessoQuiz();
-}
 function sucessoQuiz () {
-    const mostrarResultado = document.querySelector ('.caixaSucessoQuizz');
-    if (resposta1 !== undefined) {
-        if (resposta2 !== undefined) {
-            if (resposta3 !== undefined) {
-                if (resposta4 !== undefined) {
-                    mostrarResultado.classList.remove ('esconder')
-                }
-            }
-        }
+    const mostrarResultado = document.querySelector ('.fimDeJogo');
+    const qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
+    console.log (qtsPerguntas.length)
+    if (qtsPerguntas.length == contador) {
+        mostrarResultado.classList.remove ('esconder'); 
     }
 }
 
@@ -396,17 +319,100 @@ function obterQuizzes2 () {
 
  // adicionando a aparencia do quiz; 
  function paginaDoQuiz (item) {
-    console.log (item);
+    //console.log (item);
     const quizzes = item.data;
-    console.log (quizzes);
-    const arrComQuiz = [];
-    for (let i = 0; i < quizzes.length; i++) {
-        arrComQuiz.push (quizzes[i]);
-    }
-    console.log (arrComQuiz)
-    const questoes = arrComQuiz.id;
-    console.log (questoes)
+    //console.log (quizzes); >>todos os quizzes;
     //const addAparenciaJogo = document.querySelector ('.conteudoQuizz');
-    //const addCaixasPerguntas = document.querySelector ('.caixasPerguntasQuiz');
-    //for (let i = 0; i < )
+
+    const addCaixasPerguntas = document.querySelector ('.caixasPerguntasQuiz');
+    const addApresentacaoQuiz = document.querySelector ('.conteudoQuizz');
+    
+    for (let i = 0; i < quizzes.length; i++) { 
+        let quiz = quizzes[i];
+        //console.log (quiz) //quiz é cada quiz; 
+        //console.log (quiz.id)
+            let questoes = quiz.questions;
+            //console.log (questoes) //questoes é questions; = {title, colors e answers}
+            for (let j = 0; j < questoes.length; j++) {
+                let questao = questoes[j];
+                //console.log (questao);
+                let tituloQuestao = questao.title;
+                //console.log (tituloQuestao)
+                let corQuestao = questao.color;
+                //console.log (corQuestao);
+                let opcoesQuestao = questao.answers;
+                //console.log (opcoesQuestao);
+                for (let x = 0; x < opcoesQuestao.length; x++) {
+                    let opcaoQuestao = opcoesQuestao[x];
+                    //console.log (opcaoQuestao);
+                    let textoQuestao = opcaoQuestao.text;
+                    //console.log (textoQuestao);
+                    let imagemQuestao = opcaoQuestao.image;
+                    //console.log (imagemQuestao);
+                    let respostaResultadoQuestao = opcaoQuestao.isCorrectAnswer;
+                    //console.log (respostaResultadoQuestao);
+                    addApresentacaoQuiz.innerHTML = `<img class="imgPaginaQuizz" src="${quiz.image}" />
+<div class="escurecerImg">escurecerImg</div>
+<div class="nomePaginaQuizz"><h1>${quiz.title}</h1></div>`;
+                        addCaixasPerguntas.innerHTML += `<div id='${quiz.id}' class="caixaPerguntaQuizz">
+
+        <div class="caixaPergunta" style="color:${corQuestao}"><span class="pergunta">${tituloQuestao}</span></div>
+
+
+        <div class="opcoes">
+        <div class="opcoesEsquerda">
+            <div class="opcao primeira" onclick="selecionarOpcao(this)">
+                <img class="imgOpcao" src="${imagemQuestao}" />
+                <div class="nomeOpcao">${textoQuestao}</div>
+            </div>
+            <div class="opcao primeira" onclick="selecionarOpcao(this)">
+                <img class="imgOpcao" src="${imagemQuestao}" />
+                <div class="nomeOpcao">${textoQuestao}</div>
+            </div>
+        </div>
+        <div class="opcoesDireita">
+            <div class="opcao primeira" onclick="selecionarOpcao(this)">
+                <img class="imgOpcao" src="${imagemQuestao}" />
+                <div class="nomeOpcao">${textoQuestao}</div>
+            </div>
+            <div class="opcao primeira" onclick="selecionarOpcao(this)">
+                <img class="imgOpcao" src="${imagemQuestao}" />
+                <div class="nomeOpcao">${textoQuestao}</div>
+            </div>
+        </div>
+</div> <!-- opcoes -->
+</div> <!-- caixaPerguntaQuizz -->`;
+                }
+            }
+    }
  }
+
+
+// const todasOpcoes = document.querySelectorAll ('div .primeira');
+//    let opcao;
+//    for (let i = 0; i < todasOpcoes.length; i++) {
+//        opcao = todasOpcoes[i];
+//        opcao.classList.add ('ocultarResposta');
+//        if (respostaSelecionada !== null) {
+//            respostaSelecionada.classList.remove ('ocultarResposta')
+//        }
+//    }
+
+
+
+
+
+
+
+
+
+//LISTAS DE COISAS PRINCIPAIS QUE FALTAM FAZER
+//selecionar apenas um resposta em cada quadrado; 
+//nao poder mudar de opcao; 
+//aparecer somente quiz que foi selecionado;
+//retornar resultado das respostas;
+//scroll para o proximo; 
+//ao selecionar uma opcao, mostrar resultado (vermelho e verde);
+//salvar resposta de todos os inputs;
+//enviar objeto ao servidor; 
+//salvar objeto dentro da lista e dentro do 'meus quizzes'
