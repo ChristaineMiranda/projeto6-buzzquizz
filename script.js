@@ -109,7 +109,7 @@ function addQtdPerguntas () {
 
     <input class="textoRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="Resposta incorreta 3" />
     <input class="imagemRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="URL da imagem 3" /></li>`;
-    arrayCaixasPerguntas.push ({posição}`${addCaixas.innerHTML}`);
+    arrayCaixasPerguntas.push (`${addCaixas.innerHTML}`);
 }
 }
 
@@ -374,26 +374,57 @@ function erro2 (item) {
             let opcao = questaoRespostas[x];
             let textoOpcao = opcao.text;
             let imagemOpcao = opcao.image;
+            console.log (opcao)
             //let resultadoOpcao = opcao.isCorrectAnswer;
-            if (x % 2 == 0) {
-                addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                <img class="imgOpcao" src="${imagemOpcao}" />
-                <div class="nomeOpcao">${textoOpcao}</div>
-            </div>`;
-            } else if (x % 2 == 1) {
-                addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                <img class="imgOpcao" src="${imagemOpcao}" />
-                <div class="nomeOpcao">${textoOpcao}</div>
-            </div>`;
+            if (questaoRespostas.length == 2) {
+                if (x % 2 == 0) {
+                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+                } else if (x % 2 == 1) {
+                    addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+            }
+        }
+            if (questaoRespostas.length == 3) {
+                if (x % 2 == 0) {
+                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+                } else if (x % 2 == 1) {
+                    addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+            }
+        }
+            if (questaoRespostas.length == 4) {
+                if (x % 2 == 0) {
+                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+                } else if (x % 2 == 1) {
+                    addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
+                    <img class="imgOpcao" src="${imagemOpcao}" />
+                    <div class="nomeOpcao">${textoOpcao}</div>
+                </div>`;
+            }
     
         const removerEssaEsq = document.querySelector ('.opcoesEsquerda');
         const removerEssaDir = document.querySelector ('.opcoesDireita');
         removerEssaEsq.classList.remove ('essaEsquerda');
         removerEssaDir.classList.remove('.essaDireita');
+        }
+    }
+}
 
     //let niveisQuiz = quiz.levels;
     //console.log (niveisQuiz);
-    }
  }
 
 
@@ -428,5 +459,3 @@ function erro2 (item) {
 //salvar resposta de todos os inputs;
 //enviar objeto ao servidor; 
 //salvar objeto dentro da lista e dentro do 'meus quizzes';
- }
-}
