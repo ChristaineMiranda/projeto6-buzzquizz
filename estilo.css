@@ -275,7 +275,9 @@ input::placeholder {
     background-color: #434CA0;
     overflow: hidden;
 }
-
+.id {
+    opacity: 0;
+}
 
 
 
