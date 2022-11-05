@@ -236,9 +236,10 @@ function selecionarOpcao(respostaSelecionada) {
         opcao.classList.add ('ocultarResposta');
         if (respostaSelecionada !== null) {
             respostaSelecionada.classList.remove ('ocultarResposta')
+            contador++;
             resposta = respostaSelecionada.querySelector ('.nomeOpcao').innerHTML
         }
-        contador++;
+        console.log (contador);
     }
     sucessoQuiz();
 }
@@ -246,7 +247,7 @@ function selecionarOpcao(respostaSelecionada) {
 function sucessoQuiz () {
     const mostrarResultado = document.querySelector ('.fimDeJogo');
     const qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
-    
+    console.log (qtsPerguntas.length)
     if (qtsPerguntas.length == contador) {
         mostrarResultado.classList.remove ('esconder'); 
     }
@@ -306,7 +307,6 @@ function abrirQuizz (item) {
    aparecer.classList.remove ('esconder');
 
    idDoQuizSelecionado = item.querySelector ('.id').innerHTML;
-   console.log (idDoQuizSelecionado);
 
    const obtencao = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idDoQuizSelecionado}`);
     obtencao.then (paginaDoQuiz);
@@ -327,6 +327,7 @@ function erro2 (item) {
  // adicionando a aparencia do quiz; 
  function paginaDoQuiz (item) {
     const quiz = item.data;
+    let indice = 0;
     //const addAparenciaJogo = document.querySelector ('.conteudoQuizz');
 
     const addCaixasPerguntas = document.querySelector ('.caixasPerguntasQuiz');
@@ -348,81 +349,52 @@ function erro2 (item) {
         let questao = questoesQuiz[i];
         //questoes = title, color e answers; 
         let questaoTitulo = questao.title;
-//        console.log (questaoTitulo);
         let questaoCor = questao.color;
-//        console.log (questaoCor);
         addCaixasPerguntas.innerHTML += `<div class="caixaPerguntaQuizz">
 <div class="caixaPergunta" style="background-color:${questaoCor}"><span class="pergunta">${questaoTitulo}</span></div>
 <div class="opcoes">
-        <div class="opcoesEsquerda essaEsquerda"></div>
-        <div class="opcoesDireita essaDireita"></div>
+        <div class="opcoesEsquerda essaEsquerda${indice + 1}"></div>
+        <div class="opcoesDireita essaDireita${indice + 1}"></div>
 </div>
 </div>`;
 
-        const addOpcoesJogoEsquerda = document.querySelector ('.essaEsquerda');
-        const addOpcoesJogoDireita = document.querySelector ('.essaDireita');
+        let addOpcoesJogoEsquerda = document.querySelector (`.essaEsquerda${indice + 1}`);
+        let addOpcoesJogoDireita = document.querySelector (`.essaDireita${indice + 1}`);
+        let removerEssaEsq = document.querySelector (`.opcoesEsquerda`);
+        let removerEssaDir = document.querySelector (`.opcoesDireita`);
 
 
-        addOpcoesJogoEsquerda.innerHTML = '';
-        addOpcoesJogoDireita.innerHTML = '';
+        //addOpcoesJogoEsquerda.innerHTML = '';
+        //addOpcoesJogoDireita.innerHTML = '';
 
 
-        let questaoRespostas = questao.answers;
-        console.log (questaoRespostas);
+        let respostas = questao.answers;
+        console.log (respostas);
 
-        for (let x = 0; x < questaoRespostas.length; x++) {
-            let opcao = questaoRespostas[x];
-            let textoOpcao = opcao.text;
-            let imagemOpcao = opcao.image;
-            console.log (opcao)
-            //let resultadoOpcao = opcao.isCorrectAnswer;
-            if (questaoRespostas.length == 2) {
-                if (x % 2 == 0) {
+        for (let x = 0; x < respostas.length; x++) {
+
+            removerEssaEsq.classList.remove (`essaEsquerda${indice + 1}`);
+            removerEssaDir.classList.remove(`essaDireita${indice + 1}`);
+                if (x == 0 || x == 2) {
+
                     addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
+                    <img class="imgOpcao" src="${respostas[x].image}" />
+                    <div class="nomeOpcao">${respostas[x].text}</div>
+                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
                 </div>`;
-                } else if (x % 2 == 1) {
+                } else if (x == 1 || x == 3) {
+                   
                     addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
+                    <img class="imgOpcao" src="${respostas[x].image}" />
+                    <div class="nomeOpcao">${respostas[x].text}</div>
+                    <div class="resultado">${respostas[x].isCorrectAnswer}</div>
                 </div>`;
-            }
         }
-            if (questaoRespostas.length == 3) {
-                if (x % 2 == 0) {
-                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
-                </div>`;
-                } else if (x % 2 == 1) {
-                    addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
-                </div>`;
-            }
-        }
-            if (questaoRespostas.length == 4) {
-                if (x % 2 == 0) {
-                    addOpcoesJogoEsquerda.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
-                </div>`;
-                } else if (x % 2 == 1) {
-                    addOpcoesJogoDireita.innerHTML += `<div class="opcao" onclick="selecionarOpcao(this)">
-                    <img class="imgOpcao" src="${imagemOpcao}" />
-                    <div class="nomeOpcao">${textoOpcao}</div>
-                </div>`;
-            }
+        indice++
     
-        const removerEssaEsq = document.querySelector ('.opcoesEsquerda');
-        const removerEssaDir = document.querySelector ('.opcoesDireita');
-        removerEssaEsq.classList.remove ('essaEsquerda');
-        removerEssaDir.classList.remove('.essaDireita');
-        }
     }
-}
 
+}
     //let niveisQuiz = quiz.levels;
     //console.log (niveisQuiz);
  }

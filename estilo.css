@@ -278,6 +278,11 @@ input::placeholder {
 .id {
     opacity: 0;
 }
+.resultado {
+    opacity: 0;
+}
+
+
 
 
 
