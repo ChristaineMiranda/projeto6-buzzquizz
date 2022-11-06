@@ -225,12 +225,16 @@ input::placeholder {
 
 
 
+.caixasPerguntasQuiz {
+    width: 100%;
+}
 
 
 
 
-
-
+.paginaQuizz{
+    width: 100%;
+}
 
 
 .conteudoQuizz {
@@ -464,5 +468,16 @@ input::placeholder {
         max-height: 181px;
         margin: 0 auto;
         text-align: flex-start;
+    }
+}
+
+@media (max-width: 711px) {
+    .caixaSucessoQuizz {
+        max-width: 759px;
+        width: 100%;
+        min-height: 675px;
+    }
+    .textoResultado {
+        margin-top: 20px;
     }
 }

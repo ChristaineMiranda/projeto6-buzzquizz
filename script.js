@@ -78,11 +78,13 @@ function abrirCaixaBrancaNiveis (){
 
 
 let arrayCaixasPerguntas;
+let qtddDePerguntas;
+let qtddDeNiveis;
 
 //para formação da TELA 3.2 
 function addQtdPerguntas () {
     const qtddSelecionada = document.querySelector ('.qtddPerguntasQuiz').value
-    let qtddDePerguntas = Number(qtddSelecionada);
+    qtddDePerguntas = Number(qtddSelecionada);
 
     arrayCaixasPerguntas = [];
 
@@ -95,28 +97,27 @@ function addQtdPerguntas () {
     </li>
 
     <li class="aparecerPerguntas caixaBranca pergunta${(i + 1)}"><div class="orientacaoEsquerda">Pergunta ${(i + 1)}</div>
-    <input class="textoPergunta${(i + 1)} posicao${(i + 1)}" type="text" placeholder="Texto da pergunta" />
-    <input class="corPergunta${(i + 1)} posicao${(i + 1)}" type="text" placeholder="Cor de fundo da pergunta" />
+    <input class="textoPergunta${(i + 1)}" type="text" placeholder="Texto da pergunta" />
+    <input class="corPergunta${(i + 1)}" type="text" placeholder="Cor de fundo da pergunta" />
     <div class="orientacaoEsquerda">Resposta correta</div>
-    <input class="textoRespostaCorreta posicao${(i + 1)}" type="text" placeholder="Resposta correta" />
-    <input class="imagemRespostaCorreta posicao${(i + 1)}" type="text" placeholder="URL da imagem" />
+    <input class="textoRespostaCorreta${(i + 1)}" type="text" placeholder="Resposta correta" />
+    <input class="imagemRespostaCorreta${(i + 1)}" type="text" placeholder="URL da imagem" />
     <div class="orientacaoEsquerda">Respostas incorretas</div>
-    <input class="textoRespostaIncorreta1 posicao${(i + 1)}" type="text" placeholder="Resposta incorreta 1" />
-    <input class="imagemRespostaIncorreta1 posicao${(i + 1)}" type="text" placeholder="URL da imagem 1" />
+    <input class="textoRespostaIncorreta1${(i + 1)}" type="text" placeholder="Resposta incorreta 1" />
+    <input class="imagemRespostaIncorreta1${(i + 1)}" type="text" placeholder="URL da imagem 1" />
 
-    <input class="textoRespostaIncorreta2 posicao${(i + 1)}" type="text" placeholder="Resposta incorreta 2" />
-    <input class="imagemRespostaIncorreta2 posicao${(i + 1)}" type="text" placeholder="URL da imagem 2" />
+    <input class="textoRespostaIncorreta2${(i + 1)}" type="text" placeholder="Resposta incorreta 2" />
+    <input class="imagemRespostaIncorreta2${(i + 1)}" type="text" placeholder="URL da imagem 2" />
 
-    <input class="textoRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="Resposta incorreta 3" />
-    <input class="imagemRespostaIncorreta3 posicao${(i + 1)}" type="text" placeholder="URL da imagem 3" /></li>`;
-    arrayCaixasPerguntas.push (`${addCaixas.innerHTML}`);
+    <input class="textoRespostaIncorreta3${(i + 1)}" type="text" placeholder="Resposta incorreta 3" />
+    <input class="imagemRespostaIncorreta3${(i + 1)}" type="text" placeholder="URL da imagem 3" /></li>`;
 }
 }
 
 //para formação da TELA 3.3 
 function addQtdNiveis () {
     const qtddSelecionada = document.querySelector ('.qtddNiveisQuiz').value
-    let qtddDeNiveis = Number(qtddSelecionada);
+    qtddDeNiveis = Number(qtddSelecionada);
 
     const addCaixas = document.querySelector ('.caixasBrancasListaNiveis');
     addCaixas.innerHTML = '';
@@ -128,73 +129,241 @@ function addQtdNiveis () {
 
     <li class="aparecerNivel caixaBranca">
         <div class="orientacaoEsquerda">Nível ${(i + 1)}</div>
-        <input type="text" placeholder="Título do nível" />
-        <input type="text" placeholder="% de acerto mínima" />
+        <input class="tituloNivel${i + 1}" type="text" placeholder="Título do nível" />
+        <input class="porcentagem${i + 1}" type="text" placeholder="% de acerto mínima" />
 
-        <input type="text" placeholder="URL da imagem do nível" />
-        <input type="text" placeholder="Descrição do nível" />
+        <input class="imgNivel${i + 1}" type="text" placeholder="URL da imagem do nível" />
+        <input class="descricao${i + 1}" type="text" placeholder="Descrição do nível" />
     </li>`;
 }
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let tituloDoQuiz;
+let imagemDoQuiz;
+
+let textoPergunta;
+let corPergunta;
+let textoRespostaCorreta;
+let imagemRespostaCorreta;
+let textoRespostaIncorreta1;
+let imagemRespostaIncorreta1;
+let textoRespostaIncorreta2;
+let imagemRespostaIncorreta2; 
+let textoRespostaIncorreta3;
+let imagemRespostaIncorreta3;
+
+let tituloNivel;
+let porcentagem;
+let imgNivel;
+let descricao;
+
+let arrayDaPergunta = [];
+let niveis = [];
+
+let quizAdicionado;
+
+
+
+
+
 function postQuizCriado () {
 
     
-    console.log (arrayCaixasPerguntas);
     qtddPerguntasQuiz = Number(document.querySelector ('.qtddPerguntasQuiz').value);
     qtddNiveisQuiz = Number(document.querySelector ('.qtddNiveisQuiz').value);
 
-    console.log (qtddPerguntasQuiz);
-    console.log (qtddNiveisQuiz);
+
+    tituloDoQuiz = document.querySelector (`.tituloDoQuiz`).value;
+    imagemDoQuiz = document.querySelector (`.imagemDoQuiz`).value;
 
 
-    let tituloDoQuiz = document.querySelector ('.tituloDoQuiz').value;
-    let imagemDoQuiz = document.querySelector ('.imagemDoQuiz').value;
 
-    let textoPergunta1 = document.querySelector ('.textoPergunta1').value;
-    let corPergunta1 = document.querySelector ('.corPergunta1').value;
+    for (let i = 0; i < qtddDePerguntas; i++) {
 
+        textoPergunta = document.querySelector (`.textoPergunta${i + 1}`).value;
+        corPergunta = document.querySelector (`.corPergunta${i + 1}`).value;
 
-    let textoRespostaCorreta = document.querySelector ('.textoRespostaCorreta').value;
-    let imagemRespostaCorreta = document.querySelector ('.imagemRespostaCorreta').value;
-    let textoRespostaIncorreta1 = document.querySelector ('.textoRespostaIncorreta1').value;
-    let imagemRespostaIncorreta1 = document.querySelector ('.imagemRespostaIncorreta1').value;
-    let textoRespostaIncorreta2 = document.querySelector ('.textoRespostaIncorreta2').value;
-    let imagemRespostaIncorreta2 = document.querySelector ('.imagemRespostaIncorreta2').value;
-    let textoRespostaIncorreta3 = document.querySelector ('.textoRespostaIncorreta3').value;
-    let imagemRespostaIncorreta3 = document.querySelector ('.imagemRespostaIncorreta3').value;
-       
-    let quizAdicionado = {title: tituloDoQuiz, image: imagemDoQuiz, questions: [], levels: []};
-    
-    console.log (textoPergunta1)
-    console.log (corPergunta1)
-    console.log (quizAdicionado)
-    console.log (textoRespostaCorreta)
-    console.log (imagemRespostaCorreta)
-    console.log (textoRespostaIncorreta1)
-    console.log (imagemRespostaIncorreta1)
-    console.log (textoRespostaIncorreta2)
-    console.log (imagemRespostaIncorreta2)
-    console.log (textoRespostaIncorreta3)
-    console.log (imagemRespostaIncorreta3)
-    console.log (quizAdicionado)
-    // respostas = [{texto, imagem, certa ou nao}]
+        textoRespostaCorreta = document.querySelector (`.textoRespostaCorreta${i + 1}`).value;
+        imagemRespostaCorreta = document.querySelector (`.imagemRespostaCorreta${i + 1}`).value;
+        textoRespostaIncorreta1 = document.querySelector (`.textoRespostaIncorreta1${i + 1}`).value;
+        imagemRespostaIncorreta1 = document.querySelector (`.imagemRespostaIncorreta1${i + 1}`).value;
+        textoRespostaIncorreta2 = document.querySelector (`.textoRespostaIncorreta2${i + 1}`).value;
+        imagemRespostaIncorreta2 = document.querySelector (`.imagemRespostaIncorreta2${i + 1}`).value;
+        textoRespostaIncorreta3 = document.querySelector (`.textoRespostaIncorreta3${i + 1}`).value;
+        imagemRespostaIncorreta3 = document.querySelector (`.imagemRespostaIncorreta3${i + 1}`).value;
+        
+        if (textoRespostaIncorreta2 == '' && textoRespostaIncorreta3 == '') {
 
+            arrayDaPergunta.push ( 
+                    {
+                        title: textoPergunta,
+                        color: corPergunta,
+                        answers: [
+                            {
+                                text: textoRespostaCorreta,
+                                image: imagemRespostaCorreta,
+                                isCorrectAnswer: true
+                            },
+                            {
+                                text: textoRespostaIncorreta1,
+                                image: imagemRespostaIncorreta1,
+                                isCorrectAnswer: false
+                            }
+                        ]
+                    }
+            );
+        } else if (textoRespostaIncorreta3 == '') {
+            arrayDaPergunta.push ( 
+                    {
+                        title: textoPergunta,
+                        color: corPergunta,
+                        answers: [
+                            {
+                                text: textoRespostaCorreta,
+                                image: imagemRespostaCorreta,
+                                isCorrectAnswer: true
+                            },
+                            {
+                                text: textoRespostaIncorreta1,
+                                image: imagemRespostaIncorreta1,
+                                isCorrectAnswer: false
+                            },
+                            {
+                                text: textoRespostaIncorreta2,
+                                image: imagemRespostaIncorreta2,
+                                isCorrectAnswer: false
+                            }
+                        ]
+                    }
+            );
+        } else {
+            arrayDaPergunta.push ( 
+                    {
+                        title: textoPergunta,
+                        color: corPergunta,
+                        answers: [
+                            {
+                                text: textoRespostaCorreta,
+                                image: imagemRespostaCorreta,
+                                isCorrectAnswer: true
+                            },
+                            {
+                                text: textoRespostaIncorreta1,
+                                image: imagemRespostaIncorreta1,
+                                isCorrectAnswer: false
+                            },
+                            {
+                                text: textoRespostaIncorreta2,
+                                image: imagemRespostaIncorreta2,
+                                isCorrectAnswer: false
+                            },
+                            {
+                                text: textoRespostaIncorreta3,
+                                image: imagemRespostaIncorreta3,
+                                isCorrectAnswer: false
+                            }
+                        ]
+                    }
+            );
+        }
 
-    const resposta = axios.post ('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizAdicionado);
-    resposta.then (addQuizServidor);
+        }
+
+        for (let x = 0; x < qtddDeNiveis; x++) {
+
+            tituloNivel = document.querySelector (`.tituloNivel${x + 1}`).value;
+            porcentagem = document.querySelector (`.porcentagem${x + 1}`).value;
+            imgNivel = document.querySelector (`.imgNivel${x + 1}`).value;
+            descricao = document.querySelector (`.descricao${x + 1}`).value;
+
+            niveis.push ({
+                title: tituloNivel,
+                image: imgNivel,
+                text: descricao,
+                minValue: Number(porcentagem)
+            });
+        }
+
+        quizAdicionado = {title: tituloDoQuiz, image: imagemDoQuiz, questions: arrayDaPergunta, levels: niveis};
+
+        console.log (tituloDoQuiz)
+        console.log (imagemDoQuiz)
+        console.log (arrayDaPergunta)
+        console.log (niveis)
+        console.log (quizAdicionado)
+        enviarQuizCriado();
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+function enviarQuizCriado () {
+    const resposta = axios.post ('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizAdicionado);
+    resposta.then (addQuizServidor);
+    resposta.catch (ahvei);
+}
+
+function ahvei (item) {
+    console.log (item)
+}
+
+
+let IdDoQuizCriado
 //funcao para adicionar o quiz ao servidor; TELA 3
-function addQuizServidor () {
+function addQuizServidor (item) {
+    console.log (item);
+    let PegarId = item.data; 
+    IdDoQuizCriado = PegarId.id; 
+
+
     console.log ('Quiz adicionado')
 
 }
 
+function acessarQuiz () {
 
+    localStorage.setItem ('idJogarQuizCriado', `${IdDoQuizCriado}`);
+    const idJogarDenovo = localStorage.getItem ('idJogarDeNovo');
+    
+    contador = 0; 
+    contadorResposta = 0; 
+    pontuacao = 0; 
+    resultado = 0;
+
+    jogarDeNovo(idJogarDenovo); 
+}
 
 
 
@@ -375,7 +544,6 @@ let niveisQuiz;
 
 }
     niveisQuiz = quiz.levels;
-    console.log (niveisQuiz);
 
  }
 
@@ -443,21 +611,19 @@ function calcularResultado () {
 
 const addResultadoQuiz = document.querySelector ('.caixaSucessoQuizz');
     addResultadoQuiz.innerHTML = '';
+    
+    console.log (niveisQuiz);
+    console.log (niveisQuiz.minValue)
 
     for (let k = 0; k < niveisQuiz.length; k++) {
-        if (niveisQuiz[k].minValue <= (Math.ceil (resultado))) {
+        if ((Math.ceil (resultado)) >= niveisQuiz[k].minValue) {
+
             addResultadoQuiz.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
         <div class="conteudoResultado">
             <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
             <div class="textoResultado">${niveisQuiz[k].text}</div>
         </div>`;    
-        } else if (niveisQuiz[k].minValue >= (Math.ceil (resultado))) {
-            addResultadoQuiz.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
-        <div class="conteudoResultado">
-            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
-            <div class="textoResultado">${niveisQuiz[k].text}</div>
-        </div>`;
-        }
+        } 
     }
     
 }
