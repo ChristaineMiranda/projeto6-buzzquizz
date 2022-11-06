@@ -472,21 +472,22 @@ function misturar () {
 
 
 function reiniciarQuiz () {
-    console.log ('reiniciar quiz')
-    let scroll2 = document.querySelector (`.imgPaginaQuizz`);
-    scroll2.scrollIntoView (); 
-    
+
     localStorage.setItem ('idJogarDeNovo', `${idDoQuizSelecionado}`);
-    const jogarDeNovoNovamente = localStorage.getItem ('idJogarDeNovo');
+    const idJogarDenovo = localStorage.getItem ('idJogarDeNovo');
     
     contador = 0; 
     contadorResposta = 0; 
     pontuacao = 0; 
     resultado = 0;
 
-
-    const esconderResultado = document.querySelector ('.fimDeJogo');
+        setTimeout(() => {
+            let scroll2 = document.querySelector (`.imgPaginaQuizz`);
+            scroll2.scrollIntoView ();
+            
+            const esconderResultado = document.querySelector ('.fimDeJogo');
         esconderResultado.classList.add ('esconder'); 
 
-    jogarDeNovo(jogarDeNovoNovamente)
+            jogarDeNovo(idJogarDenovo)
+        }, 1000);
 }
