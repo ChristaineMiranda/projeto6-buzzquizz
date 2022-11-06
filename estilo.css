@@ -280,11 +280,15 @@ input::placeholder {
     background-color: #434CA0;
     overflow: hidden;
 }
-.id {
-    opacity: 0;
-}
+.id,
 .resultado {
     opacity: 0;
+}
+.certa {
+    color: #549D26; 
+}
+.errada {
+    color: #EA4848; 
 }
 
 
@@ -342,13 +346,6 @@ input::placeholder {
     position: absolute;
     top: 183px; 
     left: 1px;
-}
-
-.certa {
-    color: #549D26; 
-}
-.errada {
-    color: #EA4848; 
 }
 
 .caixaSucessoQuizz {
