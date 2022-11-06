@@ -268,13 +268,15 @@ function erro2 (item) {
     console.log ('erro de receber quiz específico');
 }
 
+
+let qtsPerguntas; 
 function sucessoQuiz () {
-    
     const mostrarResultado = document.querySelector ('.fimDeJogo');
-    const qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
-    
+    qtsPerguntas = document.querySelectorAll ('.caixaPerguntaQuizz')
+
     if (qtsPerguntas.length == contador) {
         mostrarResultado.classList.remove ('esconder'); 
+        calcularResultado(); 
     }
 }
 
@@ -289,6 +291,8 @@ function sucessoQuiz () {
 let resposta; 
 let contador = 0; 
 let contadorResposta = 0; 
+let pontuacao = 0; 
+let niveisQuiz;
 ////
 
 
@@ -303,9 +307,9 @@ let contadorResposta = 0;
     const addApresentacaoQuiz = document.querySelector ('.conteudoQuizz');
     addCaixasPerguntas.innerHTML = '';
 
-    let tituloQuiz = quiz.title;
-    let imagemQuiz = quiz.image;
-    let questoesQuiz = quiz.questions;
+    const tituloQuiz = quiz.title;
+    const imagemQuiz = quiz.image;
+    const questoesQuiz = quiz.questions;
     
 
     addApresentacaoQuiz.innerHTML = `<img class="imgPaginaQuizz" src="${imagemQuiz}" />
@@ -326,18 +330,14 @@ let contadorResposta = 0;
         <div class="opcoesDireita essaDireita${indice + 1}"></div>
 </div>
 <div class="filtro esconderCaixa${contadorResposta} esconder"></div>
+<div class="scroll posicao${contadorResposta}">oi</div>
 </div>`;
-console.log (contadorResposta)
 
 
         let addOpcoesJogoEsquerda = document.querySelector (`.essaEsquerda${indice + 1}`);
         let addOpcoesJogoDireita = document.querySelector (`.essaDireita${indice + 1}`);
         let removerEssaEsq = document.querySelector (`.opcoesEsquerda`);
         let removerEssaDir = document.querySelector (`.opcoesDireita`);
-
-
-        //addOpcoesJogoEsquerda.innerHTML = '';
-        //addOpcoesJogoDireita.innerHTML = '';
 
 
         let respostas = questao.answers;
@@ -365,59 +365,97 @@ console.log (contadorResposta)
     }
 
 }
-    let niveisQuiz = quiz.levels;
+    niveisQuiz = quiz.levels;
     //niveisQuiz == {image, minValue, text, title}
-    console.log (niveisQuiz);
-    const addResultadoQuiz = document.querySelector ('.caixaSucessoQuizz');
-    addResultadoQuiz.innerHTML = '';
-    for (let k = 0; k < niveisQuiz.length; k++) {
-        addResultadoQuiz.innerHTML = `<div class="caixaVermelhaResultado">${niveisQuiz[k].title}</div>
-        <div class="conteudoResultado">
-            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
-            <div class="textoResultado">${niveisQuiz[k].text}</div>
-        </div>`;
-    }
+        calcularResultado (); 
+
  }
 
- console.log (contadorResposta)
+
+
+
+
+
 //LISTAS DE COISAS PRINCIPAIS QUE FALTAM FAZER
-//selecionar apenas um resposta em cada quadrado; 
-//nao poder mudar de opcao; 
-//retornar resultado das respostas;
-//scroll para o proximo; 
 //ao selecionar uma opcao, mostrar resultado (vermelho e verde);
-//salvar resposta de todos os inputs;
 //enviar objeto ao servidor; 
 //salvar objeto dentro da lista e dentro do 'meus quizzes';
-
 
 function selecionarOpcao(respostaSelecionada) {
     contador++;
 
-    const todasOpcoes = document.querySelectorAll (`div .selecionar${contador}`);
+    const todasOpcoes = document.querySelectorAll (`.selecionar${contador}`);
+    let addCor;
+    addCor = document.querySelectorAll ('div .nomeOpcao');
+    
+    
     
     let opcao;
+    
     for (let i = 0; i < todasOpcoes.length; i++) {
         opcao = todasOpcoes[i];
         opcao.classList.add ('ocultarResposta');
         if (respostaSelecionada !== null) {
             respostaSelecionada.classList.remove ('ocultarResposta')
-            resposta = respostaSelecionada.querySelector ('.resultado').innerHTML
+            resposta = respostaSelecionada.querySelector ('.resultado').innerHTML;
+        
         }
-    }
     
+    }    
+
+    setTimeout(() => {
+
+        if (resposta == 'true') {
+            pontuacao++;
+            addCor.classList.add ('.certa');
+        } else if (resposta == 'false') {
+            addCor.classList.add ('.errada');
+        }
+        }, 500);
+
+
     setTimeout(() => {
         const esconderCaixa  = document.querySelector (`.esconderCaixa${contador}`);
         esconderCaixa.classList.remove ('esconder');     
         sucessoQuiz();
-        let scroll = document.querySelector (`.esconderCaixa${contador}`);
+        let scroll = document.querySelector (`.posicao${contador}`);
         scroll.scrollIntoView ();    
-    }, 1500);
+    }, 1000);
 
-
-    console.log (resposta)
     sucessoQuiz();
-    salvarResposta
-    console.log (contador)
+    calcularResultado();
 
+}
+
+let resultado; 
+function calcularResultado () {
+    resultado = (100 * pontuacao) / qtsPerguntas.length;
+
+    for (let z = 0; z < niveisQuiz.length; z++) {
+    if (niveisQuiz[z].minValue < (Math.ceil (resultado))) {
+        console.log ("passou no teste")
+    } else if (niveisQuiz[z].minValue > (Math.ceil (resultado))) {
+        console.log ('nao passou')
+    }
+}
+
+const addResultadoQuiz = document.querySelector ('.caixaSucessoQuizz');
+    addResultadoQuiz.innerHTML = '';
+
+    for (let k = 0; k < niveisQuiz.length; k++) {
+        if (niveisQuiz[k].minValue < (Math.ceil (resultado))) {
+            addResultadoQuiz.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
+        <div class="conteudoResultado">
+            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
+            <div class="textoResultado">${niveisQuiz[k].text}</div>
+        </div>`;    
+        } else if (niveisQuiz[k].minValue > (Math.ceil (resultado))) {
+            addResultadoQuiz.innerHTML = `<div class="caixaVermelhaResultado">${Math.ceil(resultado)}% de acerto: ${niveisQuiz[k].title}</div>
+        <div class="conteudoResultado">
+            <div class="imagemResultado"><img class="imgResultadoFinal" src="${niveisQuiz[k].image}" /></div>
+            <div class="textoResultado">${niveisQuiz[k].text}</div>
+        </div>`;
+        }
+    }
+    
 }
