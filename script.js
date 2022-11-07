@@ -42,14 +42,14 @@ function telaPerguntasQuiz (item) {
 function telaNiveisQuiz (item) {
     for (let i = 0; i < qtddDePerguntas; i++) {
 
-        let validarTextoPergunta = document.querySelector (`.textoPergunta${i + 1}`).value;
-        let validarCorPergunta = document.querySelector (`.corPergunta${i + 1}`).value;
+        const validarTextoPergunta = document.querySelector (`.textoPergunta${i + 1}`).value;
+        const validarCorPergunta = document.querySelector (`.corPergunta${i + 1}`).value;
 
-        let validarTextoRespostaCorreta = document.querySelector (`.textoRespostaCorreta${i + 1}`).value;
-        let validarTextoRespostaIncorreta1 = document.querySelector (`.textoRespostaIncorreta1${i + 1}`).value;
+        const validarTextoRespostaCorreta = document.querySelector (`.textoRespostaCorreta${i + 1}`).value;
+        const validarTextoRespostaIncorreta1 = document.querySelector (`.textoRespostaIncorreta1${i + 1}`).value;
         
         if (validarTextoPergunta == '' && validarCorPergunta == '' && validarTextoRespostaCorreta == '' && validarTextoRespostaIncorreta1 == '' && validarTextoPergunta.length < 20 && validarCorPergunta.length !== 7 && validarTextoRespostaCorreta == undefined && validarTextoRespostaIncorreta1 == undefined) {
-            return;
+            alert ('Tem que conter pergunta, cor hexadecimal, e pelo menos uma resposta incorreta.')
         } else {
             //leva para a tela 3.3; 
             const esconder = document.querySelector ('.perguntasQuiz');
@@ -61,7 +61,13 @@ function telaNiveisQuiz (item) {
 
 }
 function telaSucessoQuiz (item) {
-    postQuizCriado();
+
+    const porcentagem = document.querySelector ('.porcentagem1').value; 
+
+    if (porcentagem !== '0') {
+        alert ('Pelo menos uma porcentagem deve estar zerada');
+    } else {
+        postQuizCriado();
     //leva para a tela 3.4; 
     const esconder = document.querySelector ('.niveisQuiz');
     esconder.classList.add ('esconder');
@@ -73,7 +79,8 @@ function telaSucessoQuiz (item) {
     const tituloSucessoQuizResultado = document.querySelector ('.tituloSucessoQuizResultado');
     const imgSucessoQuizResultado = document.querySelector ('.resultadoCompleto');
     tituloSucessoQuizResultado.innerHTML = tituloQuiz;
-    imgSucessoQuizResultado.innerHTML += `<img class="imgSucessoQuizResultado" src="${imagemQuiz}" />`
+    imgSucessoQuizResultado.innerHTML += `<img class="imgSucessoQuizResultado" src="${imagemQuiz}" />`    
+    }
 }
 
 
@@ -166,7 +173,7 @@ function addQtdNiveis () {
     <li class="aparecerNivel caixaBranca">
         <div class="orientacaoEsquerda">Nível ${(i + 1)}</div>
         <input class="tituloNivel${i + 1}" type="text" placeholder="Título do nível" />
-        <input class="porcentagem${i + 1}" type="text" placeholder="% de acerto mínima" />
+        <input class="porcentagem${i + 1} porcentagem" type="text" placeholder="% de acerto mínima" />
 
         <input class="imgNivel${i + 1}" type="text" placeholder="URL da imagem do nível" />
         <input class="descricao${i + 1}" type="text" placeholder="Descrição do nível" />
@@ -422,7 +429,6 @@ function pegarQuizCriado (item) {
     obtencao.then (addQuizCriado)
     obtencao.catch (erro2)
 }
-
 
 
 function addQuizCriado (item) {
