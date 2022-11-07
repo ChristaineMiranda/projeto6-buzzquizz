@@ -22,24 +22,43 @@ function telaPerguntasQuiz (item) {
     let numeroNiveis = Number (qtddNiveisQuiz);
 
 
-    if (!tituloDoQuiz && !imagemDoQuiz && !numeroPerguntas && !numeroNiveis) {
-        return; 
-    } else {
-        //leva para a tela 3.2; 
-    const esconder = document.querySelector ('.infoBasica');
-    esconder.classList.add ('esconder');
-    const aparecer = document.querySelector ('.perguntasQuiz');
-    aparecer.classList.remove ('esconder');
-    addQtdPerguntas();
-    addQtdNiveis ();
-    }
-}
+
+    if (tituloDoQuiz == '' && imagemDoQuiz == '' && numeroPerguntas == NaN && numeroNiveis == NaN || (tituloDoQuiz.length < 20 && tituloDoQuiz.length > 65) || (numeroPerguntas < 3) || (numeroNiveis < 2)) {
+                    alert ('Nenhum campo pode estar vazio. Título deve conter entre 20 a 65 caracteres. Mínimo de 3 perguntas e mínimo de 2 níveis.')
+                } else {
+                        //leva para a tela 3.2; 
+                        const esconder = document.querySelector ('.infoBasica');
+                        esconder.classList.add ('esconder');
+                        const aparecer = document.querySelector ('.perguntasQuiz');
+                        aparecer.classList.remove ('esconder');
+                        addQtdPerguntas();
+                        addQtdNiveis ();                
+                }
+            }
+
+
+
+
 function telaNiveisQuiz (item) {
-    //leva para a tela 3.3; 
-    const esconder = document.querySelector ('.perguntasQuiz');
-    esconder.classList.add ('esconder');
-    const aparecer = document.querySelector ('.niveisQuiz');
-    aparecer.classList.remove ('esconder');
+    for (let i = 0; i < qtddDePerguntas; i++) {
+
+        let validarTextoPergunta = document.querySelector (`.textoPergunta${i + 1}`).value;
+        let validarCorPergunta = document.querySelector (`.corPergunta${i + 1}`).value;
+
+        let validarTextoRespostaCorreta = document.querySelector (`.textoRespostaCorreta${i + 1}`).value;
+        let validarTextoRespostaIncorreta1 = document.querySelector (`.textoRespostaIncorreta1${i + 1}`).value;
+        
+        if (validarTextoPergunta == '' && validarCorPergunta == '' && validarTextoRespostaCorreta == '' && validarTextoRespostaIncorreta1 == '' && validarTextoPergunta.length < 20 && validarCorPergunta.length !== 7 && validarTextoRespostaCorreta == undefined && validarTextoRespostaIncorreta1 == undefined) {
+            return;
+        } else {
+            //leva para a tela 3.3; 
+            const esconder = document.querySelector ('.perguntasQuiz');
+            esconder.classList.add ('esconder');
+            const aparecer = document.querySelector ('.niveisQuiz');
+            aparecer.classList.remove ('esconder');
+        }
+    }
+
 }
 function telaSucessoQuiz (item) {
     postQuizCriado();
@@ -328,7 +347,6 @@ function postQuizCriado () {
 
 
 
-
 function enviarQuizCriado () {
     const resposta = axios.post ('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizAdicionado);
     resposta.then (addQuizServidor);
@@ -346,6 +364,8 @@ function addQuizServidor (item) {
     console.log (item);
     let PegarId = item.data; 
     IdDoQuizCriado = PegarId.id; 
+    console.log (PegarId)
+    console.log (IdDoQuizCriado)
 
 
     console.log ('Quiz adicionado')
@@ -353,17 +373,88 @@ function addQuizServidor (item) {
 }
 
 function acessarQuiz () {
+    console.log ('acessar quiz')
 
     localStorage.setItem ('idJogarQuizCriado', `${IdDoQuizCriado}`);
-    const idJogarDenovo = localStorage.getItem ('idJogarDeNovo');
+    const idJogarQuizCriado = localStorage.getItem ('idJogarQuizCriado');
     
     contador = 0; 
     contadorResposta = 0; 
     pontuacao = 0; 
     resultado = 0;
 
-    jogarDeNovo(idJogarDenovo); 
+    jogarQuizCriado(idJogarQuizCriado); 
+    addQuizCriado (idJogarQuizCriado)
 }
+
+
+function jogarQuizCriado (item) {
+    console.log (item)
+
+    const esconder = document.querySelector ('.sucessoQuiz');
+    esconder.classList.add ('esconder');
+    const aparecer = document.querySelector ('.paginaQuizz');
+    aparecer.classList.remove ('esconder');
+
+
+    const obtencao = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${item}`);
+    obtencao.then (paginaDoQuiz);
+    obtencao.then (addQuizCriado)
+    obtencao.catch (erro2)
+}
+
+
+function addQuizCriado (item) {
+    console.log (item)
+    const quizCriado = item.data;
+    console.log (quizCriado)
+//adicionando quiz na lista;
+
+const arrayDosQuizzesCriados = [];
+    localStorage.setItem ('idQuizCriado', `${quizCriado.id}`);
+    const idJogarQuizCriado = localStorage.getItem ('idQuizCriado');
+    arrayDosQuizzesCriados.push (idJogarQuizCriado);
+    console.log (arrayDosQuizzesCriados);
+
+    let addListaMeusQuizzes = document.querySelector ('.caixaCriar');
+    addListaMeusQuizzes.innerHTML = '<span class="manterEsquerda">Meus Quizzes</span>';
+
+    for (let i = 0; i < arrayDosQuizzesCriados.length; i++) {
+        addListaMeusQuizzes.innerHTML += `<li class="quizz" onclick="abrirQuizz(this)">
+        <img class="imgQuizz" src="${quizCriado.image}" />
+        <div class="nomeQuizz">${quizCriado.title}</div>
+        <div class="id">${quizCriado.id}</div>
+    </li>`    
+
+    }
+
+/////////////////////
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -429,11 +520,15 @@ function abrirQuizz (item) {
     obtencao.then (paginaDoQuiz);
     obtencao.catch (erro2)
 }
+
+
 function jogarDeNovo (item) {
+
     const obtencao = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${item}`);
     obtencao.then (paginaDoQuiz);
     obtencao.catch (erro2)
 }
+
 
 
 
@@ -550,13 +645,6 @@ let niveisQuiz;
 
 
 
-
-
-//LISTAS DE COISAS PRINCIPAIS QUE FALTAM FAZER
-//enviar objeto ao servidor; resultado
-//salvar objeto dentro da lista e dentro do 'meus quizzes';
-
-
 function selecionarOpcao(respostaSelecionada) {
     contador++;
 
@@ -612,8 +700,6 @@ function calcularResultado () {
 const addResultadoQuiz = document.querySelector ('.caixaSucessoQuizz');
     addResultadoQuiz.innerHTML = '';
     
-    console.log (niveisQuiz);
-    console.log (niveisQuiz.minValue)
 
     for (let k = 0; k < niveisQuiz.length; k++) {
         if ((Math.ceil (resultado)) >= niveisQuiz[k].minValue) {
