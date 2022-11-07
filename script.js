@@ -583,9 +583,9 @@ let niveisQuiz;
     const questoesQuiz = quiz.questions;
     
 
-    addApresentacaoQuiz.innerHTML = `<img class="imgPaginaQuizz" src="${imagemQuiz}" />
+    addApresentacaoQuiz.innerHTML = `<div class="barraDeCimaPaginaQuizz"><img class="imgPaginaQuizz" src="${imagemQuiz}" />
 <div class="escurecerImg">escurecerImg</div>
-<div class="nomePaginaQuizz"><h1>${tituloQuiz}</h1></div>`;
+<div class="nomePaginaQuizz"><h1>${tituloQuiz}</h1></div></div>`;
 
 
     for (let i = 0; i < questoesQuiz.length; i++) {
@@ -594,7 +594,7 @@ let niveisQuiz;
         //questoes = title, color e answers; 
         let questaoTitulo = questao.title;
         let questaoCor = questao.color;
-        addCaixasPerguntas.innerHTML += `<div class="caixaPerguntaQuizz">
+        addCaixasPerguntas.innerHTML += `<div class="conterCaixaPergunta"><div class="caixaPerguntaQuizz">
 <div class="caixaPergunta" style="background-color:${questaoCor}"><span class="pergunta">${questaoTitulo}</span></div>
 <div class="opcoes">
         <div class="opcoesEsquerda essaEsquerda${indice + 1}"></div>
@@ -602,7 +602,7 @@ let niveisQuiz;
 </div>
 <div class="filtro esconderCaixa${contadorResposta} esconder"></div>
 <div class="scroll posicao${contadorResposta}">oi</div>
-</div>`;
+</div></div>`;
 
 
 
