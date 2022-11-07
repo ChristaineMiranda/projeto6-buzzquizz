@@ -75,9 +75,26 @@ function telaSucessoQuiz (item) {
     tituloSucessoQuizResultado.innerHTML = tituloQuiz;
     imgSucessoQuizResultado.innerHTML += `<img class="imgSucessoQuizResultado" src="${imagemQuiz}" />`
 }
+
+
+
+
 function retornarTelaPrincipal () {
-    window.location.reload()
+    location.reload();
+    
+    //const paginaDoQuiz = document.querySelector ('.paginaQuizz');
+    //paginaDoQuiz.classList.add ('esconder');
+    //const criarQuizzConteudo = document.querySelector ('.criarQuizzConteudo');
+    //criarQuizzConteudo.classList.add ('esconder');
+    //const entrada = document.querySelector ('.entrada');
+    //entrada.classList.remove ('esconder');
+    //const caixaSucessoQuizz = document.querySelector ('.fimDeJogo');
+    //caixaSucessoQuizz.classList.add ('esconder');
+    //obterQuizzes();
+
 }
+
+
 
 
 
@@ -328,11 +345,6 @@ function postQuizCriado () {
 
         quizAdicionado = {title: tituloDoQuiz, image: imagemDoQuiz, questions: arrayDaPergunta, levels: niveis};
 
-        console.log (tituloDoQuiz)
-        console.log (imagemDoQuiz)
-        console.log (arrayDaPergunta)
-        console.log (niveis)
-        console.log (quizAdicionado)
         enviarQuizCriado();
 }
 
@@ -369,6 +381,7 @@ function addQuizServidor (item) {
 
 
     console.log ('Quiz adicionado')
+    pegarQuizCriado(IdDoQuizCriado);
 
 }
 
@@ -399,9 +412,17 @@ function jogarQuizCriado (item) {
 
     const obtencao = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${item}`);
     obtencao.then (paginaDoQuiz);
+    obtencao.catch (erro2)
+}
+
+
+function pegarQuizCriado (item) {
+
+    const obtencao = axios.get (`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${item}`);
     obtencao.then (addQuizCriado)
     obtencao.catch (erro2)
 }
+
 
 
 function addQuizCriado (item) {
@@ -413,10 +434,11 @@ function addQuizCriado (item) {
 const arrayDosQuizzesCriados = [];
     localStorage.setItem ('idQuizCriado', `${quizCriado.id}`);
     const idJogarQuizCriado = localStorage.getItem ('idQuizCriado');
-    arrayDosQuizzesCriados.push (idJogarQuizCriado);
+    arrayDosQuizzesCriados.push ({idQuizCriado: idJogarQuizCriado});
     console.log (arrayDosQuizzesCriados);
 
-    let addListaMeusQuizzes = document.querySelector ('.caixaCriar');
+    let addListaMeusQuizzes = document.querySelector ('.infoCriarQuizz');
+    addListaMeusQuizzes.classList.add ('esconder'); 
     addListaMeusQuizzes.innerHTML = '<span class="manterEsquerda">Meus Quizzes</span>';
 
     for (let i = 0; i < arrayDosQuizzesCriados.length; i++) {
@@ -425,7 +447,7 @@ const arrayDosQuizzesCriados = [];
         <div class="nomeQuizz">${quizCriado.title}</div>
         <div class="id">${quizCriado.id}</div>
     </li>`    
-
+    console.log ('adicionando quiz a lista "meus quizzes"')
     }
 
 /////////////////////
@@ -535,8 +557,8 @@ function jogarDeNovo (item) {
 
 
 function erro2 (item) {
-    console.log (item);
-    console.log ('erro de receber quiz específico');
+    alert ('Algo deu errado. A página será atualizada');
+    location.reload(); 
 }
 
 
